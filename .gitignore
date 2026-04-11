@@ -1,0 +1,26 @@
+# Hidden local files and folders
+.*
+!.gitignore
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# Local tooling artifacts
+.agent/
+.codex-artifacts/
+.playwright-cli/
+.tmp/
+output/
+
+# Local design
+claude.md
+CLAUDE.md
+design.pen
+AGENTS.md
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.log

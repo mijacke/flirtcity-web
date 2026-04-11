@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "title": "Flirtcity — Find Your Gem in the City | LGBTQ+ Dating & Chat",
+    "description": "Shine bright. Match right. Flirtcity is the premium LGBTQ+ dating app where real connections happen. Download now for iOS and Android.",
+    "ogTitle": "Flirtcity — Find Your Gem in the City",
+    "ogDescription": "The premium LGBTQ+ dating app where real connections happen. Shine bright. Match right."
+  },
+  "header": {
+    "logoAlt": "Flirtcity",
+    "homeAriaLabel": "Flirtcity home",
+    "signIn": "Sign In",
+    "toggleMenu": "Toggle menu",
+    "nav": [
+      { "href": "#about", "label": "About App" },
+      { "href": "#how-it-works", "label": "How it works" },
+      { "href": "#features", "label": "Features" },
+      { "href": "#stories", "label": "User Stories" },
+      { "href": "#download", "label": "Download" }
+    ]
+  },
+  "hero": {
+    "heading": "Find your gem in the city",
+    "subheading": "Shine bright. Match right.",
+    "description": "Flirtcity is a fully inclusive LGBTQ+ dating app designed for everyone across the spectrum — welcoming lesbian, gay, bi, trans, queer, nonbinary people, and all identities that make our community shine. Built for real connection, comfort, and self-expression, Flirtcity helps you meet people who match your vibe and honor your authenticity. With a vibrant and growing global community, it redefines queer dating by celebrating every identity, every attraction, and every kind of relationship. Because love isn't one-size-fits-all — and in Flirtcity, you can always shine bright and match right.",
+    "newBadge": "NEW",
+    "matchItems": [
+      {
+        "name": "William",
+        "age": 42,
+        "city": "Santa Monica",
+        "distance": "36 km away"
+      },
+      {
+        "name": "Sam",
+        "age": 25,
+        "city": "Beverly Hills",
+        "distance": "22 km away"
+      }
+    ]
+  },
+  "howItWorks": {
+    "sectionTitle": "How it works",
+    "steps": [
+      { "number": "1.", "title": "Download Flirtcity App" },
+      { "number": "2.", "title": "Create Your Profile" },
+      { "number": "3.", "title": "Discover People Around You" },
+      { "number": "4.", "title": "You Write, You Meet" }
+    ]
+  },
+  "whyChoose": {
+    "sectionTitle": "Why Choose Flirtcity as Your Dating App?",
+    "cards": {
+      "realProfiles": "Real profiles, no bots",
+      "smartMatches": "Smart matches",
+      "safeEnvironment": "Safe environment",
+      "modern": "Modern, fast, simple",
+      "worksOnlyMobile": "Works only on mobile"
+    }
+  },
+  "userStories": {
+    "sectionTitle": "User Stories",
+    "starRatingLabel": "5 star rating",
+    "stories": [
+      {
+        "user": "Avery Collins, DE",
+        "title": "Meaningful Chats That Flow",
+        "quote": "This is a great experience. I'm feeling well when I text with someone on Taimi. We respect each other."
+      },
+      {
+        "user": "Jordan Hayes, AU",
+        "title": "Effortless Onboarding",
+        "quote": "Get started in minutes with FlirtCity's smooth, inclusive sign-up flow. Customize your identity, pronouns, and what you're looking for — no pressure, no boxes that don't fit. Just you, shining from the start."
+      },
+      {
+        "user": "Riley Morgan, GB",
+        "title": "Curated Matches, Real Connections",
+        "quote": "FlirtCity filters through the noise to bring you people who actually match your vibe. Smart suggestions prioritize compatibility, authenticity, and shared energy — helping you match right, every time."
+      },
+      {
+        "user": "Taylor Bennett, AT",
+        "title": "Vibrant City Discovery",
+        "quote": "Explore your city through LGBTQ+ lenses. From local hotspots to upcoming queer events, FlirtCity helps you find not only people, but places where you can feel seen, welcomed, and connected."
+      }
+    ]
+  },
+  "security": {
+    "sectionTitle": "Security",
+    "items": [
+      "Profile verification for greater trust",
+      "Moderation and reporting",
+      "Data protection"
+    ]
+  },
+  "downloadCta": {
+    "heading": "Discover Your Queer Community Instantly",
+    "description": "Download Flirtcity and step into a space made for real LGBTQ+ connections.\nBe yourself, meet people who match your vibe, and explore a safe, vibrant community where you can truly shine.",
+    "appStoreAlt": "Download on the App Store",
+    "googlePlayAlt": "Get it on Google Play"
+  },
+  "footer": {
+    "copyright": "© 2025 Flirtcity. All rights reserved",
+    "logoAlt": "Flirtcity",
+    "links": [
+      { "href": "#", "label": "Terms of Service" },
+      { "href": "#", "label": "Cookie Policy" },
+      { "href": "#", "label": "Privacy Policy" },
+      { "href": "#", "label": "Contact Us" }
+    ],
+    "socials": [
+      { "href": "#", "label": "Instagram", "network": "instagram" },
+      { "href": "#", "label": "X", "network": "x" },
+      { "href": "#", "label": "Facebook", "network": "facebook" },
+      { "href": "#", "label": "TikTok", "network": "tiktok" }
+    ]
+  }
+}

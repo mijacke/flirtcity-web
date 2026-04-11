@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens (Tailwind v4 @theme) ─── */
+@theme {
+  /* Background colors */
+  --color-bg-primary: #17072b;
+  --color-bg-secondary: #1d0a37;
+  --color-bg-tertiary: #251042;
+
+  /* Text colors */
+  --color-text-primary: #ffffff;
+  --color-text-dark: #090316;
+
+  /* Accent colors */
+  --color-accent-purple: #4f287f;
+  --color-accent-pink: #fa8ae5;
+  --color-accent-cyan: #0ff2f2;
+  --color-accent-blue: #40ebfc;
+  --color-accent-lavender: #bda9ec;
+  --color-accent-yellow: #ffe02e;
+  --color-accent-sky: #70d2f6;
+
+  /* Border radius */
+  --radius-card: 20px;
+  --radius-button: 16px;
+  --radius-screen: 32px;
+  --radius-cta: 40px;
+
+  /* Shadows */
+  --shadow-soft: 0 18px 48px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 30px 80px rgba(0, 0, 0, 0.4);
+  --shadow-glass: 0 30px 90px rgba(3, 1, 11, 0.34);
+
+  /* Font families */
+  --font-primary: var(--font-outfit), "Outfit", system-ui, sans-serif;
+  --font-secondary: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-drift: drift 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
+  --animate-bob: bob 5s ease-in-out infinite;
+}
+
+/* ─── Custom CSS Variables (non-Tailwind tokens) ─── */
+:root {
+  --surface-panel-bg: rgba(255, 255, 255, 0.05);
+  --surface-panel-bg-strong: rgba(255, 255, 255, 0.08);
+  --surface-panel-hover: rgba(255, 255, 255, 0.04);
+  --surface-panel-border: rgba(255, 255, 255, 0.08);
+  --surface-panel-border-soft: rgba(255, 255, 255, 0.05);
+  --surface-control-border: rgba(255, 255, 255, 0.12);
+  --color-bg-card: var(--surface-panel-bg);
+  --color-bg-card-strong: var(--surface-panel-bg-strong);
+  --color-bg-header: rgba(23, 7, 43, 0.5);
+  --color-text-secondary: rgba(255, 255, 255, 0.72);
+  --color-text-muted: rgba(255, 255, 255, 0.48);
+  --color-text-subtle: rgba(255, 255, 255, 0.3);
+  --color-slider-bg: #d1d1d6;
+  --gradient-pearl: linear-gradient(90deg,
+      #ffe02e 0%,
+      #fa8ae5 40%,
+      #bda9ec 56%,
+      #70d2f6 77%,
+      #40ebfc 92%,
+      #0ff2f2 100%);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --section-padding-inline: max(1rem, calc((100vw - var(--content-width)) / 2));
+  --section-padding-block: clamp(5rem, 6.25vw, 7.5rem);
+  --content-width: 1440px;
+  --header-height: 100px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 76px;
+  }
+}
+
+/* ─── Keyframes ─── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(2deg);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes bob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Base Resets ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  overflow-x: clip;
+}
+
+main {
+  background: var(--color-bg-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Native dialog reset for mobile menu */
+dialog {
+  padding: 0;
+  border: none;
+  max-width: none;
+  max-height: none;
+  background: transparent;
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+::selection {
+  background: rgba(250, 138, 229, 0.35);
+  color: var(--color-text-primary);
+}
+
+
+
+/* ─── Utility Components (used globally as classNames) ─── */
+@utility section-shell {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--section-padding-inline);
+}
+
+@utility section-frame {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+@utility section-stack {
+  padding-block: var(--section-padding-block);
+}
+
+@utility glass-panel {
+  backdrop-filter: blur(32px) saturate(135%);
+  -webkit-backdrop-filter: blur(32px) saturate(135%);
+}
+
+@utility pearl-text {
+  background: var(--gradient-pearl);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility pearl-line {
+  background: var(--gradient-pearl);
+  background-size: 200% 100%;
+}
+
+@utility surface-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), var(--shadow-soft);
+  backdrop-filter: blur(26px) saturate(130%);
+  -webkit-backdrop-filter: blur(26px) saturate(130%);
+}
+
+@utility surface-panel {
+  background: var(--surface-panel-bg);
+  border: 1px solid var(--surface-panel-border);
+  border-radius: var(--radius-card);
+}
+
+@utility surface-panel-soft {
+  background: var(--surface-panel-bg);
+  border: 1px solid var(--surface-panel-border-soft);
+  border-radius: var(--radius-card);
+}
+
+@utility surface-pill {
+  background: var(--surface-panel-bg);
+  border-radius: 999px;
+}
+
+@utility eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-cyan);
+}
