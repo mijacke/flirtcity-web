@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit, Montserrat } from "next/font/google";
+import { notFound } from "next/navigation";
 
-import type { Locale } from "../i18n/config";
-import { i18n } from "../i18n/config";
+import { i18n, isLocale } from "../i18n/config";
+import { getSiteUrlObject } from "../lib/site";
 import { getDictionary } from "../locales/getDictionary";
 
 import "../globals.css";
@@ -38,14 +39,21 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const locale = (i18n.locales as readonly string[]).includes(lang)
-    ? (lang as Locale)
-    : i18n.defaultLocale;
-  const dict = await getDictionary(locale);
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
+  const metadataBase = getSiteUrlObject();
 
   return {
+    metadataBase,
     title: dict.meta.title,
     description: dict.meta.description,
+    alternates: {
+      canonical: `/${lang}`,
+    },
     keywords: [
       "LGBTQ+ dating",
       "gay dating app",
@@ -60,6 +68,7 @@ export async function generateMetadata({
       type: "website",
       locale: lang,
       siteName: "Flirtcity",
+      url: `/${lang}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -71,6 +80,11 @@ export async function generateMetadata({
 
 export default async function LangLayout({ children, params }: LangLayoutProps) {
   const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
   return (
     <html lang={lang} className={`${outfit.variable} ${montserrat.variable}`}>
       <body>

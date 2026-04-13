@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+*.log
+*.tsbuildinfo
+.agent
+.codex-artifacts
+.playwright-cli
+.tmp
+output

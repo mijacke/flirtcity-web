@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import DownloadCTA from "../components/sections/DownloadCTA";
@@ -6,8 +8,7 @@ import HowItWorks from "../components/sections/HowItWorks";
 import Security from "../components/sections/Security";
 import UserStories from "../components/sections/UserStories";
 import WhyChoose from "../components/sections/WhyChoose";
-import type { Locale } from "../i18n/config";
-import { i18n } from "../i18n/config";
+import { isLocale } from "../i18n/config";
 import { getDictionary } from "../locales/getDictionary";
 
 type PageProps = {
@@ -15,11 +16,13 @@ type PageProps = {
 };
 
 export default async function Home({ params }: PageProps) {
-  const { lang: rawLang } = await params;
-  const locale = (i18n.locales as readonly string[]).includes(rawLang)
-    ? (rawLang as Locale)
-    : i18n.defaultLocale;
-  const dict = await getDictionary(locale);
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
 
   return (
     <>

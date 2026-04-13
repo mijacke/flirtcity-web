@@ -1,6 +1,7 @@
 # Hidden local files and folders
 .*
 !.gitignore
+!.dockerignore
 
 # Node / Next.js
 node_modules/
@@ -24,3 +25,4 @@ AGENTS.md
 .DS_Store
 Thumbs.db
 *.log
+*.tsbuildinfo
