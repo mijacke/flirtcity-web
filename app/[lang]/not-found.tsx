@@ -1,4 +1,4 @@
-  import Link from "next/link";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -39,7 +39,7 @@ export default function NotFound() {
             maxWidth: "36ch",
           }}
         >
-          The page you're looking for doesn't exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
       </div>
       <Link

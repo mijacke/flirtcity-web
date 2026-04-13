@@ -151,7 +151,7 @@ export default function Header({ dict }: HeaderProps) {
           {isMenuOpen ? (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="grid content-center justify-items-center gap-6 w-full h-full pt-24 pb-8 px-6 bg-[rgba(9,3,22,0.92)] backdrop-blur-[30px] backdrop-saturate-[130%]"
+              className="grid content-center justify-items-center gap-6 w-full h-full pt-24 pb-8 px-6 text-white bg-[rgba(9,3,22,0.92)] backdrop-blur-[30px] backdrop-saturate-[130%]"
               exit={{ opacity: 0, y: -16 }}
               initial={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
@@ -170,7 +170,7 @@ export default function Header({ dict }: HeaderProps) {
                 </motion.a>
               ))}
               <a
-                className="mt-3 min-w-[min(100%,16rem)] inline-flex items-center justify-center gap-2 min-h-[2.75rem] px-3.5 border border-white rounded-[1rem] bg-transparent font-[var(--font-primary)] text-sm font-semibold leading-none text-[var(--color-text-primary)] transition-colors duration-[180ms] ease-out hover:bg-[var(--surface-panel-hover)] no-underline"
+                className="mt-3 min-w-[min(100%,16rem)] inline-flex items-center justify-center gap-2 min-h-[2.75rem] px-3.5 border border-white rounded-[1rem] bg-transparent font-[var(--font-primary)] text-sm font-semibold leading-none text-white transition-colors duration-[180ms] ease-out hover:bg-[var(--surface-panel-hover)] no-underline"
                 href="#signin"
                 onClick={closeMenu}
               >

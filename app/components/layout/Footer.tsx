@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import SocialIcon from "../icons/SocialIcon";
 
 import type { Dictionary } from "@/app/locales/getDictionary";

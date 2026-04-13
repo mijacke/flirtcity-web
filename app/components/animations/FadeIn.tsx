@@ -24,6 +24,13 @@ const directionMap = {
   right: { x: -1 },
 } as const;
 
+const motionComponents = {
+  article: motion.article,
+  div: motion.div,
+  section: motion.section,
+  span: motion.span,
+} as const;
+
 /**
  * Lightweight client-side animation wrapper.
  * Wraps children in a framer-motion element that fades (and optionally slides)
@@ -39,7 +46,7 @@ export default function FadeIn({
   offset = 32,
   viewportMargin = "-80px",
 }: FadeInProps) {
-  const Component = motion.create(as);
+  const Component = motionComponents[as];
   const dir = directionMap[direction];
 
   const initialProps = {

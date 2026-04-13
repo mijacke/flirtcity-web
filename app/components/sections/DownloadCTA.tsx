@@ -26,7 +26,7 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
             className="absolute z-0 block pointer-events-none h-auto select-none max-w-none left-[-50rem] top-[-30rem] w-[120rem] h-[80rem] max-[920px]:left-[-22rem] max-[920px]:top-[-20rem] max-[920px]:w-[45rem] max-sm:left-[-16rem] max-sm:top-[-20rem] max-sm:w-[38rem]"
             height={812}
             priority
-            src="/images/design/download-cta/cta-symbol-left.png"
+            src="/images/design/download-cta/logo-flirtcity-left.svg"
             width={1067}
           />
           <Image
@@ -35,7 +35,7 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
             className="absolute z-0 block pointer-events-none h-auto select-none max-w-none right-[-40rem] w-[80rem] max-[920px]:left-auto max-[920px]:right-[-21rem] max-[920px]:top-auto max-[920px]:bottom-[-11rem] max-[920px]:w-[38rem] max-sm:right-[-24rem] max-sm:bottom-[-12rem] max-sm:w-[30rem]"
             height={689}
             priority
-            src="/images/design/download-cta/cta-symbol-right.png"
+            src="/images/design/download-cta/logo-flirtcity-right.svg"
             width={904}
           />
 

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import FadeIn from "../animations/FadeIn";
 import SectionHeading from "../ui/SectionHeading";
 
