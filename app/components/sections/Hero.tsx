@@ -7,13 +7,13 @@ import type { Dictionary } from "@/app/locales/getDictionary";
 
 const matchItemAssets = [
   {
-    className: "left-[69.1566%] top-[18.3333%] w-[6.8082%] h-[17.037%] rounded-[13.8px] max-xl:top-16 max-xl:right-[4.4rem] max-xl:left-auto max-xl:w-[8.6rem] max-xl:h-auto max-xl:p-[0.45rem_0.45rem_0.7rem] max-xl:gap-[0.35rem] max-[900px]:top-4 max-[900px]:right-0 max-[900px]:w-[6.2rem]",
+    className: "left-[70%] top-[20%] w-[7%] h-[17%] rounded-[13.8px]",
     image: "/images/design/hero/hero-profile-top.png",
     showBadge: true,
     size: "large" as const,
   },
   {
-    className: "left-[37.8298%] top-[81.4815%] w-[5.9201%] h-[14.8148%] rounded-[12px] max-xl:left-[11.5rem] max-xl:right-auto max-xl:top-auto max-xl:bottom-[10.75rem] max-xl:w-[4.4rem] max-xl:h-auto max-xl:p-[0.25rem_0.25rem_0.35rem] max-xl:gap-[0.15rem] max-[900px]:left-[1.2rem] max-[900px]:bottom-36",
+    className: "left-[37.5%] top-[77%] w-[6%] h-[14.5%] rounded-[12px]",
     image: "/images/design/hero/hero-profile-bottom.png",
     showBadge: false,
     size: "small" as const,
@@ -42,7 +42,6 @@ function MatchCard({
     <article
       className={`absolute z-4 overflow-hidden bg-[rgba(23,7,43,0.96)] shadow-[0_16px_28px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)] ${asset.className}`}
     >
-      {/* Image layer with gradient overlay */}
       <div className="relative w-full h-full [&_img]:object-cover after:content-[''] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(23,7,43,0)_0%,rgba(23,7,43,1)_100%),center/cover_no-repeat_url('/images/design/hero/photo-effect.png')] after:opacity-94 after:pointer-events-none">
         <Image
           alt={`Featured profile ${name}`}
@@ -52,44 +51,38 @@ function MatchCard({
         />
       </div>
 
-      {/* Content overlay */}
       <div
-        className={`absolute right-0 bottom-0 left-0 grid justify-items-center content-end text-white ${isLarge
-          ? "min-h-[92px] pb-[11.5px] gap-[4.6px]"
-          : "min-h-[80px] pb-2.5 gap-1"
+        className={`absolute right-0 bottom-0 left-0 grid justify-items-center content-end text-white ${isLarge ? "min-h-[92px] pb-[11.5px] gap-[4.6px]" : "min-h-[80px] pb-2.5 gap-1"
           }`}
       >
-        <div className="flex items-center justify-center w-full">
-          <span
-            className={`font-semibold text-center text-white ${isLarge
-              ? "text-[16.1px] leading-[1.142857] tracking-[-0.575px] max-xl:text-[0.72rem] max-xl:tracking-normal"
-              : "text-[14px] leading-[1.142857] tracking-[-0.4px] max-xl:text-[0.72rem]"
-              }`}
-          >
-            {name}, {age}
-          </span>
-        </div>
+        <span
+          className={`font-semibold text-center text-white ${isLarge
+            ? "text-[clamp(12px,0.84vw,16.1px)] leading-[1.14]"
+            : "text-[clamp(11px,0.73vw,14px)] leading-[1.14]"
+            }`}
+        >
+          {name}, {age}
+        </span>
         <span
           className={`text-center text-white/50 ${isLarge
-            ? "text-[12.65px] leading-[1.090909] tracking-[-0.575px] max-xl:text-[0.54rem] max-xl:leading-[1.2] max-xl:tracking-normal"
-            : "text-[11px] leading-[1.090909] tracking-[-0.5px] max-xl:text-[0.54rem] max-xl:leading-[1.2] max-xl:tracking-normal"
+            ? "text-[clamp(10px,0.66vw,12.65px)] leading-[1.1]"
+            : "text-[clamp(9px,0.57vw,11px)] leading-[1.1]"
             }`}
         >
           {city}
         </span>
         <span
           className={`inline-flex items-center justify-center text-white bg-white/15 backdrop-blur-[10px] ${isLarge
-            ? "text-[12.65px] leading-[1.090909] tracking-[-0.575px] rounded-[36.8px] px-[6.9px] py-[3.45px]"
-            : "text-[11px] leading-[1.090909] tracking-[-0.5px] rounded-[32px] px-1.5 py-[3px]"
+            ? "text-[clamp(10px,0.66vw,12.65px)] leading-[1.1] rounded-[36.8px] px-[6.9px] py-[3.45px]"
+            : "text-[clamp(9px,0.57vw,11px)] leading-[1.1] rounded-[32px] px-1.5 py-[3px]"
             }`}
         >
           {distance}
         </span>
       </div>
 
-      {/* NEW badge */}
       {asset.showBadge ? (
-        <span className="absolute top-[4.6px] right-[4.6px] px-[5.75px] py-[4.6px] rounded-[11.5px] bg-[var(--color-accent-pink)] text-[11.5px] font-semibold leading-none max-xl:top-[0.3rem] max-xl:right-[0.3rem] max-xl:px-[0.28rem] max-xl:py-[0.16rem] max-xl:rounded-full max-xl:text-[0.45rem] max-xl:tracking-[0.06em]">
+        <span className="absolute top-[4.6px] right-[4.6px] px-[5.75px] py-[4.6px] rounded-[11.5px] bg-[var(--color-accent-pink)] text-[clamp(9px,0.6vw,11.5px)] font-semibold leading-none">
           {newBadgeLabel}
         </span>
       ) : null}
@@ -134,104 +127,105 @@ type HeroProps = {
 /* ── Main Hero Section ── */
 export default function Hero({ dict }: HeroProps) {
   return (
-    <section className="relative overflow-x-clip overflow-y-visible min-h-[min(1080px,56.25vw)] scroll-mt-[calc(var(--header-height)+1rem)] max-xl:min-h-auto max-[900px]:pt-[calc(var(--header-height)+1rem)]" id="about">
-      <div className="relative h-[min(1080px,56.25vw)] max-xl:h-auto">
-        <div className="relative w-[min(1920px,100vw)] aspect-[1920/1080] mx-auto max-xl:relative max-xl:left-auto max-xl:top-auto max-xl:transform-none max-xl:grid max-xl:grid-cols-1 max-xl:w-[min(100%,var(--content-width))] max-xl:h-auto max-xl:min-h-auto max-xl:pb-8 max-xl:mx-auto max-[900px]:gap-6">
-
-          {/* Photo collage assets */}
+    <section
+      className="relative overflow-x-clip scroll-mt-[calc(var(--header-height)+1rem)]"
+      id="about"
+    >
+      {/* ── Desktop absolute layout (≥1100px) ── */}
+      <div className="relative min-h-[min(1080px,56.25vw)] overflow-x-clip max-[1100px]:hidden">
+        <div className="relative w-[min(1920px,100vw)] aspect-[1920/1080] mx-auto">
+          {/* Decorative collage */}
           <PhotoAsset
             alt="Crystal texture"
-            className="top-[-3.2407%] left-[26.5625%] w-[18.3854%] h-[19.8148%] rounded-b-[22px] opacity-78 max-xl:top-[-0.25rem] max-xl:left-1/2 max-xl:w-[13.2rem] max-xl:h-32 max-xl:-translate-x-1/2 max-sm:w-40 max-sm:h-[6.06rem]"
+            className="top-[-3%] left-[25%] w-[18%] h-[20%] rounded-b-[22px] opacity-78"
             priority
-            sizes="18.3854vw"
+            sizes="18vw"
             src="/images/design/hero/hero-prism-strip.jpg"
           />
           <PhotoAsset
             alt="Hands with rainbow bracelets"
-            className="left-[-5.8854%] top-[20.6481%] w-[11.7708%] h-[19.8148%] rounded-[20px] opacity-88 max-xl:hidden"
-            sizes="11.7708vw"
+            className="left-[-5%] top-[20%] w-[11%] h-[20%] rounded-[20px] opacity-88"
+            sizes="11vw"
             src="/images/design/hero/hero-hands.png"
           />
           <PhotoAsset
             alt="Rainbow dancer"
-            className="left-[4.1667%] top-[77.1296%] w-[16.5104%] h-[43.9815%] rounded-[20px] opacity-92 max-xl:hidden"
-            sizes="16.5104vw"
+            className="left-[4%] top-[78%] w-[17%] h-[44%] rounded-[20px] opacity-92"
+            sizes="17vw"
             src="/images/design/hero/hero-dancer.jpg"
           />
           <PhotoAsset
             alt="Rainbow prism detail"
-            className="top-[26.8519%] left-[91.1979%] w-[11.0417%] h-[26.2037%] rounded-[20px] opacity-88 max-xl:top-[5.6rem] max-xl:right-[-3.2rem] max-xl:left-auto max-xl:w-[10.2rem] max-xl:h-[13.61rem] max-[900px]:top-12 max-[900px]:right-[-2rem] max-[900px]:w-28 max-[900px]:h-[9.35rem] max-sm:hidden"
-            sizes="11.0417vw"
+            className="top-[27%] left-[92%] w-[12%] h-[26%] rounded-[20px] opacity-88"
+            sizes="12vw"
             src="/images/design/hero/hero-prism-right.png"
           />
           <PhotoAsset
+            alt="Small gem detail"
+            className="top-[80%] left-[80%] w-[10%] h-[20%] rounded-[20px]"
+            sizes="9.5vw"
+            src="/images/design/hero/hero-gem-small.png"
+          />
+          <PhotoAsset
             alt="Portrait detail"
-            className="top-[63.8889%] left-[74.3229%] w-[11.6146%] h-[28.1481%] rounded-[20px] max-xl:right-[4.6rem] max-xl:bottom-52 max-xl:left-auto max-xl:top-auto max-xl:w-[10.2rem] max-xl:h-[13.89rem] max-[900px]:right-4 max-[900px]:bottom-[8.6rem] max-[900px]:w-[7.4rem] max-[900px]:h-[10.1rem]"
-            sizes="11.6146vw"
+            className="top-[60%] left-[74%] w-[12%] h-[28%] rounded-[20px]"
+            sizes="12vw"
             src="/images/design/hero/hero-portrait-right.jpg"
           />
           <PhotoAsset
             alt="Friends together"
-            className="top-[99.1667%] left-[59.5313%] w-[14.0104%] h-[14.2593%] rounded-[20px] max-xl:right-[16.2rem] max-xl:bottom-[4.5rem] max-xl:left-auto max-xl:top-auto max-xl:w-40 max-xl:h-[5.72rem] max-[900px]:right-28 max-[900px]:bottom-8 max-[900px]:w-32 max-[900px]:h-[4.58rem] max-sm:hidden"
-            sizes="14.0104vw"
+            className="top-[90%] left-[56%] w-[13%] h-[13%] rounded-[20px]"
+            sizes="14vw"
             src="/images/design/hero/hero-group.png"
           />
 
           {/* Logo symbol */}
-          <div className="absolute top-[56.8519%] left-[59.9479%] w-[10.8854%] h-[14.7222%] z-4">
+          <div className="absolute top-[50%] left-[60%] w-[11%] h-[15%] z-4">
             <Image
               alt="Flirtcity decorative symbol"
               className="object-fill"
               fill
-              sizes="10.8854vw"
+              sizes="11vw"
               src="/images/design/hero/logo_symbol-flirtcity.png"
             />
           </div>
 
-          <PhotoAsset
-            alt="Small gem detail"
-            className="top-[85.8333%] left-[82.8125%] w-[9.4271%] h-[18.8889%] rounded-[20px] max-xl:right-16 max-xl:bottom-[6.2rem] max-xl:left-auto max-xl:top-auto max-xl:w-[6.7rem] max-xl:h-[7.56rem] max-[900px]:right-3 max-[900px]:bottom-[2.6rem] max-[900px]:w-[5.25rem] max-[900px]:h-[5.92rem]"
-            sizes="9.4271vw"
-            src="/images/design/hero/hero-gem-small.png"
-          />
-
           {/* Copy block */}
-          <div className="absolute left-[12.5%] top-[29.9074%] z-2 grid w-[29.4792%] gap-6 max-xl:relative max-xl:top-auto max-xl:left-auto max-xl:w-[min(100%,42rem)] max-xl:justify-self-center max-xl:text-center max-xl:justify-items-center">
-            <div className="grid gap-2.5">
-              <h1 className="m-0 w-full text-[clamp(46px,3.2292vw,62px)] font-medium leading-[1.354838] tracking-[-0.5px] max-xl:text-[clamp(4rem,4.2vw,4.875rem)] max-sm:text-[3.5rem]">
+          <div className="absolute left-[12.5%] top-[29.9074%] z-2 grid w-[29.4792%] gap-[min(1.5rem,1.25vw)]">
+            <div className="grid gap-[min(0.625rem,0.52vw)]">
+              <h1 className="m-0 w-full text-[clamp(34px,3.2292vw,62px)] font-medium leading-[1.15] tracking-[-0.01em]">
                 {dict.heading}
               </h1>
-              <p className="m-0 text-[clamp(27px,1.875vw,36px)] font-semibold leading-[1.222222] tracking-[-0.18px] max-xl:text-[clamp(2rem,2.2vw,2.25rem)] max-sm:text-[1.85rem]">
+              <p className="m-0 text-[clamp(22px,1.875vw,36px)] font-semibold leading-[1.22] tracking-[-0.005em]">
                 <GradientText>{dict.subheading}</GradientText>
               </p>
             </div>
 
-            <p className="m-0 w-full text-[clamp(13px,0.8854vw,17px)] leading-[1.333333] tracking-[-0.5px] text-white/92 max-xl:text-[1.125rem] max-xl:max-w-[42rem] max-sm:text-base max-sm:leading-[1.5]">
+            <p className="m-0 w-full text-[clamp(12px,0.8854vw,17px)] leading-[1.4] tracking-[-0.01em] text-white/92">
               {dict.description}
             </p>
           </div>
 
-          {/* Phone visual — replaced <img> with Next.js <Image> */}
-          <div className="absolute left-[47.1875%] top-[22.375%] z-2 w-[18.6979%] h-[55.25%] max-xl:relative max-xl:left-auto max-xl:top-auto max-xl:w-[min(100%,46rem)] max-xl:min-h-[42rem] max-xl:justify-self-center max-[900px]:min-h-[34rem] max-sm:min-h-[31rem]">
+          {/* Phone visual — back sized so visible phone matches front (front image has rotation alpha) */}
+          <div className="absolute left-[45%] top-[22%] z-2 w-[21%] h-[60%]">
             <Image
               alt="Secondary Flirtcity phone screen"
-              className="absolute h-auto object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] left-[23.1755%] top-[15.1194%] z-2 w-[76.8245%] max-xl:left-[29rem] max-xl:top-36 max-xl:w-[16.7rem] max-[900px]:left-[calc(50%+2.7rem)] max-[900px]:top-20 max-[900px]:w-[11.5rem] max-sm:left-[calc(50%+2rem)] max-sm:w-[9.75rem]"
-              height={920}
+              className="absolute h-auto object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] left-[36%] top-[12%] z-2 w-[64%]"
+              height={618}
               priority
               src="/images/design/hero/hero-phone-back.png"
-              width={360}
+              width={302}
             />
             <Image
               alt="Primary Flirtcity phone screen"
-              className="absolute h-auto object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] left-0 top-0 z-3 w-full max-xl:left-64 max-xl:top-[3.6rem] max-xl:w-96 max-[900px]:left-1/2 max-[900px]:top-8 max-[900px]:w-[17rem] max-[900px]:-translate-x-1/2 max-sm:w-[14.5rem]"
-              height={920}
+              className="absolute h-auto object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] left-0 bottom-10 z-3 w-full"
+              height={787}
               priority
               src="/images/design/hero/hero-phone-front-cropped.png"
-              width={360}
+              width={471}
             />
           </div>
 
-          {/* Match cards */}
           {dict.matchItems.map((item, index) => (
             <MatchCard
               key={`${item.name}-${item.age}`}
@@ -244,10 +238,103 @@ export default function Hero({ dict }: HeroProps) {
             />
           ))}
 
-          {/* Store buttons */}
-          <div className="absolute left-[71.0938%] top-[47.7778%] z-4 flex gap-2.5 max-xl:top-[17rem] max-xl:right-[2.8rem] max-xl:left-auto max-xl:gap-2.5 max-[900px]:right-0 max-[900px]:top-[12.5rem] max-[900px]:flex-col max-sm:top-[10.8rem] max-sm:[&_a]:scale-90 max-sm:[&_a]:origin-top-right">
+          {/* Store buttons — original figma position (right side, mid-height) */}
+          <div className="absolute left-[71.0938%] top-[47.7778%] z-4 flex gap-[min(0.625rem,0.52vw)]">
             <StoreButton size="compact" store="appStore" />
             <StoreButton size="compact" store="googlePlay" />
+          </div>
+        </div>
+      </div>
+
+      {/* ── Tablet / Mobile simplified layout (<1100px) ── */}
+      <div className="hidden max-[1100px]:block">
+        <div className="relative section-shell pt-[calc(var(--header-height)+clamp(4rem,9vw,7rem))] pb-[clamp(3.5rem,7vw,6rem)]">
+          {/* Decorative collage — only prism-strip (top) and prism-right (right). Hidden on mobile <720px. */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 max-[720px]:hidden">
+            <div className="relative section-frame h-full mx-auto">
+              <PhotoAsset
+                alt=""
+                className="top-[-8%] left-[23%] w-[25%] aspect-[1] rounded-[1.2rem] opacity-85"
+                sizes="14vw"
+                src="/images/design/hero/hero-prism-strip.jpg"
+              />
+              <PhotoAsset
+                alt=""
+                className="top-[8%] right-[-2%] w-[14%] aspect-[1/1.4] rounded-[1.2rem] opacity-85"
+                sizes="14vw"
+                src="/images/design/hero/hero-prism-right.png"
+              />
+              <PhotoAsset
+                alt="Hands with rainbow bracelets"
+                className="left-[-5%] top-[20%] w-[11%] h-[20%] rounded-[20px] opacity-88"
+                sizes="11vw"
+                src="/images/design/hero/hero-hands.png"
+              />
+              <PhotoAsset
+                alt="Rainbow dancer"
+                className="left-[4%] top-[50%] w-[15%] h-[20%] rounded-[20px] opacity-92"
+                sizes="17vw"
+                src="/images/design/hero/hero-dancer.jpg"
+              />
+              <PhotoAsset
+                alt="Small gem detail"
+                className="top-[50%] left-[90%] w-[13%] h-[10%] rounded-[20px]"
+                sizes="9.5vw"
+                src="/images/design/hero/hero-gem-small.png"
+              />
+              <PhotoAsset
+                alt="Portrait detail"
+                className="top-[40%] left-[83%] w-[15%] h-[15%] rounded-[20px]"
+                sizes="12vw"
+                src="/images/design/hero/hero-portrait-right.jpg"
+              />
+              <PhotoAsset
+                alt="Friends together"
+                className="top-[80%] left-[15%] w-[20%] h-[7%] rounded-[20px]"
+                sizes="14vw"
+                src="/images/design/hero/hero-group.png"
+              />
+            </div>
+          </div>
+
+          <div className="relative section-frame grid gap-[clamp(2.5rem,5vw,4.5rem)] justify-items-center text-center">
+            <div className="grid gap-4 w-full max-w-[44rem]">
+              <h1 className="m-0 text-[clamp(2rem,5.2vw,3.75rem)] font-medium leading-[1.15] tracking-[-0.01em]">
+                {dict.heading}
+              </h1>
+              <p className="m-0 text-[clamp(1.5rem,3.4vw,2.25rem)] font-semibold leading-[1.2] tracking-[-0.005em]">
+                <GradientText>{dict.subheading}</GradientText>
+              </p>
+              <p className="m-0 mx-auto max-w-[40rem] text-[clamp(0.95rem,1.8vw,1.125rem)] leading-[1.5] text-white/85">
+                {dict.description}
+              </p>
+            </div>
+
+            {/* Two overlapped phones — back sized so visible phone matches front */}
+            <div className="relative mx-auto w-[min(100%,22rem)] aspect-[359/620]">
+              <Image
+                alt="Secondary Flirtcity phone screen"
+                className="absolute left-[43%] top-[15%] w-[60%] h-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] z-1"
+                height={618}
+                priority
+                src="/images/design/hero/hero-phone-back.png"
+                width={302}
+              />
+              <Image
+                alt="Primary Flirtcity phone screen"
+                className="absolute right-[20%] bottom-15 w-full h-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] z-2"
+                height={787}
+                priority
+                src="/images/design/hero/hero-phone-front-cropped.png"
+                width={471}
+              />
+            </div>
+
+            {/* Two store buttons always side by side */}
+            <div className="flex justify-center items-center gap-3 flex-nowrap">
+              <StoreButton size="compact" store="appStore" />
+              <StoreButton size="compact" store="googlePlay" />
+            </div>
           </div>
         </div>
       </div>

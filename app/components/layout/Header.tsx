@@ -70,11 +70,11 @@ export default function Header({ dict }: HeaderProps) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,border-color] duration-[220ms] ease-out
-        before:content-[''] before:absolute before:inset-0 before:pointer-events-none before:backdrop-blur-0
+        before:content-[''] before:absolute before:inset-0 before:pointer-events-none before:[backdrop-filter:blur(4px)_saturate(140%)] before:[-webkit-backdrop-filter:blur(24px)_saturate(140%)]
         after:content-[''] after:absolute after:right-0 after:bottom-0 after:left-0 after:h-[2px] after:pointer-events-none after:bg-[image:var(--gradient-pearl)] after:opacity-100
         ${isScrolled
-          ? "before:bg-[rgba(23,7,43,0.62)]"
-          : "before:bg-[rgba(23,7,43,0.5)]"
+          ? "before:bg-[rgba(23,7,43,0.55)]"
+          : "before:bg-[rgba(23,7,43,0.38)]"
         }`}
     >
       <div className="section-shell">
