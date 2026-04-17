@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 import FadeIn from "../animations/FadeIn";
@@ -6,6 +9,12 @@ import type { Dictionary } from "@/app/locales/getDictionary";
 
 type DownloadCTAProps = {
   dict: Dictionary["downloadCta"];
+};
+
+const storeButtonHover = {
+  transition: { stiffness: 380, type: "spring" as const },
+  whileHover: { scale: 1.03, y: -2 },
+  whileTap: { scale: 0.98 },
 };
 
 export default function DownloadCTA({ dict }: DownloadCTAProps) {
@@ -19,25 +28,31 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
           offset={36}
           duration={0.7}
         >
-          {/* Background decorative logos */}
-          <Image
-            alt=""
-            aria-hidden="true"
-            className="absolute z-0 block pointer-events-none h-auto select-none max-w-none left-[-50rem] top-[-30rem] w-[120rem] h-[80rem] max-[920px]:left-[-22rem] max-[920px]:top-[-20rem] max-[920px]:w-[45rem] max-sm:left-[-16rem] max-sm:top-[-20rem] max-sm:w-[38rem]"
-            height={812}
-            priority
-            src="/images/design/download-cta/logo-flirtcity-left.svg"
-            width={1067}
-          />
-          <Image
-            alt=""
-            aria-hidden="true"
-            className="absolute z-0 block pointer-events-none h-auto select-none max-w-none right-[-40rem] w-[80rem] max-[920px]:left-auto max-[920px]:right-[-21rem] max-[920px]:top-auto max-[920px]:bottom-[-11rem] max-[920px]:w-[38rem] max-sm:right-[-24rem] max-sm:bottom-[-12rem] max-sm:w-[30rem]"
-            height={689}
-            priority
-            src="/images/design/download-cta/logo-flirtcity-right.svg"
-            width={904}
-          />
+          {/* Background decorative logo glows */}
+          <div className="absolute inset-0 z-0 flex justify-center overflow-hidden pointer-events-none">
+            <div className="relative h-full w-[1440px] shrink-0">
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="absolute max-w-none select-none pointer-events-none"
+                height={1500}
+                priority
+                src="/images/design/download-cta/logo-flirtcity-left.png"
+                style={{ left: -500, top: -700, width: 1700, height: 1500 }}
+                width={1700}
+              />
+              <Image
+                alt=""
+                aria-hidden="true"
+                className="absolute max-w-none select-none pointer-events-none"
+                height={1550}
+                priority
+                src="/images/design/download-cta/logo-flirtcity-right.png"
+                style={{ left: 700, top: -100, width: 1600, height: 1550 }}
+                width={1600}
+              />
+            </div>
+          </div>
 
           {/* Content */}
           <div className="relative z-2 grid justify-items-center gap-[60px] w-full mx-auto max-[920px]:gap-11 max-sm:gap-9">
@@ -50,11 +65,12 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
               {line2}
             </p>
 
-            <div className="flex justify-center gap-3.5 w-[441px] h-[67.2px] max-[920px]:w-auto max-[920px]:h-auto max-sm:w-full max-sm:flex-wrap max-sm:h-auto">
-              <a
-                className="inline-flex items-center justify-center h-[67.2px] w-[201.6px] leading-none [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-contain max-sm:w-[min(100%,225.4px)] max-sm:h-auto"
+            <div className="flex flex-nowrap justify-center items-center gap-3 w-full max-w-[441px]">
+              <motion.a
+                className="inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 h-auto leading-none [&_img]:block [&_img]:w-full [&_img]:h-auto"
                 href="#"
                 rel="noopener noreferrer"
+                {...storeButtonHover}
               >
                 <img
                   alt={dict.appStoreAlt}
@@ -64,11 +80,12 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
                   src="/images/design/download-cta/app-store.svg"
                   width={202}
                 />
-              </a>
-              <a
-                className="inline-flex items-center justify-center h-[67.2px] w-[226px] leading-none [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-contain max-sm:w-[min(100%,225.4px)] max-sm:h-auto"
+              </motion.a>
+              <motion.a
+                className="inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 h-auto leading-none [&_img]:block [&_img]:w-full [&_img]:h-auto"
                 href="#"
                 rel="noopener noreferrer"
+                {...storeButtonHover}
               >
                 <img
                   alt={dict.googlePlayAlt}
@@ -78,7 +95,7 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
                   src="/images/design/download-cta/google-play.svg"
                   width={226}
                 />
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -92,4 +109,4 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
     </section>
   );
 }
- 
+
