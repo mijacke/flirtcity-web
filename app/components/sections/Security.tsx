@@ -19,18 +19,21 @@ export default function Security({ dict }: SecurityProps) {
       <div className="section-shell section-stack">
         <div className="section-frame grid">
           <FadeIn
-            className="grid grid-cols-[33.4375rem_52.8125rem] items-center gap-[3.75rem] max-xl:grid-cols-1"
+            className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.58fr)] items-center gap-[clamp(1.5rem,3vw,3.75rem)] max-[1100px]:grid-cols-1 max-[1100px]:gap-12"
             offset={28}
           >
-            {/* Left column */}
-            <div className="grid gap-[3.75rem] w-[33.4375rem] max-xl:w-full max-[900px]:gap-10">
-              <SectionHeading align="left" title={dict.sectionTitle} />
+            {/* Left column — heading + items */}
+            <div className="grid gap-[3.75rem] w-full max-[1100px]:gap-8">
+              <SectionHeading
+                align="left"
+                title={dict.sectionTitle}
+              />
 
-              <div className="grid gap-5">
+              <div className="grid gap-5 max-[1100px]:gap-4">
                 {dict.items.map((label, index) => (
                   <FadeIn
                     key={label}
-                    className="flex items-center gap-[0.9375rem] w-[33.4375rem] p-[1.875rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] border border-[var(--surface-panel-border)] max-xl:w-full max-[900px]:p-[1.25rem_1.2rem] [&_p]:m-0 [&_p]:text-[1.375rem] [&_p]:font-semibold [&_p]:leading-[1.181818] [&_p]:tracking-[-0.11px] max-[900px]:[&_p]:text-base"
+                    className="flex items-center gap-[0.9375rem] p-[1.875rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] border border-[var(--surface-panel-border)] max-[1100px]:p-[1.25rem_1.2rem] [&_p]:m-0 [&_p]:text-[1.375rem] [&_p]:font-semibold [&_p]:leading-[1.181818] [&_p]:tracking-[-0.11px] max-[1100px]:[&_p]:text-base"
                     delay={index * 0.08}
                     direction="left"
                     offset={24}
@@ -50,16 +53,16 @@ export default function Security({ dict }: SecurityProps) {
               </div>
             </div>
 
-            {/* Right column — visual composition */}
+            {/* Right column — composition. Uses percentage positioning so it shrinks proportionally at any width. */}
             <FadeIn
-              className="relative w-[52.8125rem] h-[33.1875rem] max-xl:mx-auto max-[900px]:w-[min(100%,42rem)] max-[900px]:h-[min(26.4rem,62vw)] max-sm:h-[21rem] [&_img]:absolute [&_img]:max-w-none"
+              className="relative w-full aspect-[845/531] max-[1100px]:w-[min(100%,42rem)] max-[1100px]:mx-auto [&_img]:absolute [&_img]:max-w-none"
               direction="right"
               duration={0.65}
             >
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[3.1875rem] left-[13.0625rem] w-[35.625rem] h-auto rounded-[3.125rem] z-0 max-[900px]:left-[24.7337%] max-[900px]:top-[9.7935%] max-[900px]:w-[67.4556%] max-[900px]:h-auto"
+                className="top-[9.79%] left-[24.73%] w-[67.46%] h-auto rounded-[clamp(1.5rem,3.7vw,3.125rem)] z-0"
                 height={422}
                 fetchPriority="high"
                 src="/images/design/security/background-card.svg"
@@ -69,7 +72,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-10 w-[34.9375rem] h-auto rotate-[11.6206deg] origin-center opacity-92 blur-[0.2px] z-1 max-[900px]:left-[7.4429%] max-[900px]:top-[14.55%] max-[900px]:w-[55.5947%]"
+                className="top-[14.55%] left-[7.44%] w-[55.59%] h-auto rotate-[11.6206deg] origin-center opacity-92 blur-[0.2px] z-1"
                 height={491}
                 src="/images/design/security/logo_symbol-flirtcity.svg"
                 width={559}
@@ -78,7 +81,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[0.6rem] left-[2.375rem] w-[14.775rem] h-auto z-2 max-[900px]:left-[4.497%] max-[900px]:top-[1.8182%] max-[900px]:w-[30.6574%]"
+                className="top-[1.82%] left-[4.5%] w-[30.66%] h-auto z-2"
                 height={531}
                 fetchPriority="high"
                 src="/images/design/security/iPhone-security.svg"
@@ -88,7 +91,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[10.2058rem] left-[14.375rem] w-[14.6875rem] h-auto rounded-[1.6444rem] z-3 max-[900px]:left-[27.9762%] max-[900px]:top-[30.693%] max-[900px]:w-[27.8107%]"
+                className="top-[30.69%] left-[27.98%] w-[27.81%] h-auto rounded-[clamp(0.75rem,1.95vw,1.6444rem)] z-3"
                 height={202}
                 src="/images/design/security/sheet-profile-verified.svg"
                 width={235}
@@ -97,7 +100,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[25.3203rem] left-[26.8047rem] w-[13.4531rem] h-auto z-3 max-[900px]:left-[50.6553%] max-[900px]:top-[76.2588%] max-[900px]:w-[25.4201%]"
+                className="top-[76.26%] left-[50.66%] w-[25.42%] h-auto z-3"
                 height={38}
                 src="/images/design/security/message.svg"
                 width={216}
@@ -106,7 +109,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[20.875rem] left-[44.4583rem] w-[7.1042rem] h-auto rounded-[0.75rem] z-3 max-[900px]:left-[84.2485%] max-[900px]:top-[62.8788%] max-[900px]:w-[13.4615%]"
+                className="top-[62.88%] left-[84.25%] w-[13.46%] h-auto rounded-[clamp(0.5rem,0.88vw,0.75rem)] z-3"
                 height={160}
                 src="/images/design/security/match-item.svg"
                 width={114}
@@ -115,7 +118,7 @@ export default function Security({ dict }: SecurityProps) {
               <img
                 alt=""
                 aria-hidden="true"
-                className="top-[1.6875rem] left-[39.875rem] w-12 h-auto z-3 max-[900px]:left-[75.5029%] max-[900px]:top-[5.0847%] max-[900px]:w-[5.6805%]"
+                className="top-[5.08%] left-[75.5%] w-[5.68%] h-auto z-3"
                 height={48}
                 src="/images/design/security/heart-top-right.svg"
                 width={48}
