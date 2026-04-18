@@ -5,15 +5,11 @@ import { motion } from "framer-motion";
 const STORE_BUTTONS = {
   appStore: {
     alt: "Download on the App Store",
-    height: 48,
     src: "/images/design/hero/app-store.svg",
-    width: 144,
   },
   googlePlay: {
     alt: "Get it on Google Play",
-    height: 48,
     src: "/images/design/hero/google-play.svg",
-    width: 160,
   },
 } as const;
 
@@ -25,15 +21,15 @@ type StoreButtonProps = {
   store: keyof typeof STORE_BUTTONS;
 };
 
+/**
+ * Both store buttons share identical box dimensions so they always render
+ * at the same visual size regardless of label length. The SVG (which already
+ * includes the full gradient-bordered button chrome) is letterboxed inside
+ * via `object-contain`, so differing intrinsic aspect ratios no longer leak.
+ */
 const sizeStyles = {
-  default: {
-    appStore: "w-[clamp(10rem,10.5vw,12.6rem)]",
-    googlePlay: "w-[clamp(11.2rem,11.75vw,14.0875rem)]",
-  },
-  compact: {
-    appStore: "w-36",
-    googlePlay: "w-[10.0625rem]",
-  },
+  default: "w-[clamp(10rem,11vw,13.25rem)] aspect-[3.05/1]",
+  compact: "w-[10.0625rem] aspect-[3.05/1]",
 } as const;
 
 export default function StoreButton({
@@ -49,7 +45,7 @@ export default function StoreButton({
     <motion.a
       data-size={size}
       data-store={store}
-      className={`inline-flex items-center justify-center origin-center ${sizeStyles[size][store]} ${className ?? ""}`}
+      className={`relative inline-flex items-center justify-center origin-center ${sizeStyles[size]} ${className ?? ""}`}
       href={href}
       transition={{ stiffness: 380, type: "spring" }}
       whileHover={{ scale: 1.03, y: -2 }}
@@ -57,11 +53,11 @@ export default function StoreButton({
     >
       <img
         alt={asset.alt}
-        className={`block w-full h-auto ${size === "compact" ? "object-contain" : ""}`}
-        height={asset.height}
+        className="block w-full h-full object-contain"
+        decoding="async"
         fetchPriority={priority ? "high" : "auto"}
+        loading={priority ? "eager" : "lazy"}
         src={asset.src}
-        width={asset.width}
       />
     </motion.a>
   );
