@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 import FadeIn from "../animations/FadeIn";
+import BlurImage from "../ui/BlurImage";
 
 import type { Dictionary } from "@/app/locales/getDictionary";
 
@@ -31,22 +31,24 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
           {/* Background decorative logo glows */}
           <div className="absolute inset-0 z-0 flex justify-center overflow-hidden pointer-events-none">
             <div className="relative h-full w-[1440px] shrink-0">
-              <Image
+              <BlurImage
                 alt=""
                 aria-hidden="true"
                 className="absolute max-w-none select-none pointer-events-none"
                 height={1500}
-                priority
+                loading="lazy"
+                sizes="1700px"
                 src="/images/design/download-cta/logo-flirtcity-left.png"
                 style={{ left: -500, top: -700, width: 1700, height: 1500 }}
                 width={1700}
               />
-              <Image
+              <BlurImage
                 alt=""
                 aria-hidden="true"
                 className="absolute max-w-none select-none pointer-events-none"
                 height={1550}
-                priority
+                loading="lazy"
+                sizes="1600px"
                 src="/images/design/download-cta/logo-flirtcity-right.png"
                 style={{ left: 700, top: -100, width: 1600, height: 1550 }}
                 width={1600}
@@ -67,33 +69,33 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
 
             <div className="flex flex-nowrap justify-center items-center gap-3 w-full max-w-[441px]">
               <motion.a
-                className="inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 h-auto leading-none [&_img]:block [&_img]:w-full [&_img]:h-auto"
+                className="relative inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 aspect-[3.05/1]"
                 href="#"
                 rel="noopener noreferrer"
                 {...storeButtonHover}
               >
                 <img
                   alt={dict.appStoreAlt}
-                  className="w-full h-auto"
-                  height={68}
+                  className="block w-full h-full object-contain"
+                  decoding="async"
                   fetchPriority="high"
+                  loading="lazy"
                   src="/images/design/download-cta/app-store.svg"
-                  width={202}
                 />
               </motion.a>
               <motion.a
-                className="inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 h-auto leading-none [&_img]:block [&_img]:w-full [&_img]:h-auto"
+                className="relative inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 aspect-[3.05/1]"
                 href="#"
                 rel="noopener noreferrer"
                 {...storeButtonHover}
               >
                 <img
                   alt={dict.googlePlayAlt}
-                  className="w-full h-auto"
-                  height={68}
+                  className="block w-full h-full object-contain"
+                  decoding="async"
                   fetchPriority="high"
+                  loading="lazy"
                   src="/images/design/download-cta/google-play.svg"
-                  width={226}
                 />
               </motion.a>
             </div>

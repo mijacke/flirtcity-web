@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 import FadeIn from "../animations/FadeIn";
+import { useCarousel } from "../animations/useCarousel";
 import SectionHeading from "../ui/SectionHeading";
 
 import type { Dictionary } from "@/app/locales/getDictionary";
@@ -24,21 +24,7 @@ type HowItWorksProps = {
 
 export default function HowItWorks({ dict }: HowItWorksProps) {
   const stepCount = dict.steps.length;
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const scrollToIndex = useCallback((index: number) => {
-    setActiveIndex(index);
-  }, []);
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      // Pause while the mobile menu (or any other dialog) is open — slide
-      // animations otherwise repaint behind the non-modal dialog.
-      if (document.querySelector("dialog[open]")) return;
-      setActiveIndex((current) => (current + 1) % stepCount);
-    }, 3600);
-    return () => window.clearInterval(id);
-  }, [stepCount]);
+  const { activeIndex, setIndex, swipeHandlers } = useCarousel({ count: stepCount });
 
   return (
     <section className="scroll-mt-[calc(var(--header-height)+1rem)]" id="how-it-works">
@@ -80,18 +66,18 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
 
           {/* Carousel <720px */}
           <div className="hidden max-[720px]:mx-auto max-[720px]:block max-[720px]:w-full max-[720px]:max-w-[28rem]">
-            <div className="overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={dict.steps[activeIndex].number}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 0.32, ease: "easeOut" }}
-              >
-                <StepCard step={dict.steps[activeIndex]} index={activeIndex} />
-              </motion.div>
-            </AnimatePresence>
+            <div className="overflow-hidden select-none" {...swipeHandlers}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={dict.steps[activeIndex].number}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.32, ease: "easeOut" }}
+                >
+                  <StepCard step={dict.steps[activeIndex]} index={activeIndex} />
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             <div className="flex justify-center items-center gap-[0.6875rem] mx-auto mt-4 p-[0.9375rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] w-fit">
@@ -102,16 +88,17 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
                     key={index}
                     type="button"
                     aria-label={`Show step ${index + 1}`}
-                    onClick={() => scrollToIndex(index)}
+                    onClick={() => setIndex(index)}
                     className="relative block h-2 overflow-hidden rounded-full bg-white/50"
                     style={{ width: isActive ? 20 : 8, opacity: isActive ? 1 : 0.5 }}
                   >
                     {isActive ? (
                       <motion.span
-                        animate={{ scaleX: [0, 1] }}
+                        key={activeIndex}
+                        animate={{ scaleX: 1 }}
                         className="absolute inset-0 rounded-[inherit] bg-white origin-left"
                         initial={{ scaleX: 0 }}
-                        transition={{ duration: 3.2, ease: "linear" }}
+                        transition={{ duration: 3.6, ease: "linear" }}
                       />
                     ) : null}
                   </button>
@@ -143,10 +130,12 @@ function StepCard({
       delay={index * 0.08}
     >
       <div className="relative mx-auto w-[min(100%,21.875em)] aspect-[323/350]" data-tone={asset.tone}>
-        <img
+        <Image
           alt={step.title}
           className="absolute inset-0 block w-full h-full drop-shadow-[0_18px_34px_rgba(0,0,0,0.36)] transition-transform duration-[420ms] ease-out group-hover:scale-[1.015]"
           height={350}
+          loading="lazy"
+          sizes="(max-width: 720px) 90vw, (max-width: 1025px) 22rem, 22rem"
           src={asset.image}
           width={323}
         />

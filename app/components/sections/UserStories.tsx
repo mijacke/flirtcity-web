@@ -1,10 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
+import { useCarousel } from "../animations/useCarousel";
 import SectionHeading from "../ui/SectionHeading";
 
 import type { Dictionary } from "@/app/locales/getDictionary";
@@ -22,22 +21,7 @@ type UserStoriesProps = {
 
 export default function UserStories({ dict }: UserStoriesProps) {
   const storyCount = dict.stories.length;
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const scrollToIndex = useCallback((index: number) => {
-    setActiveIndex(index);
-  }, []);
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      // Pause while the mobile menu (or any other dialog) is open — the slide
-      // animation otherwise repaints behind the non-modal dialog and briefly
-      // bleeds horizontally, causing a visible flicker.
-      if (document.querySelector("dialog[open]")) return;
-      setActiveIndex((current) => (current + 1) % storyCount);
-    }, 3600);
-    return () => window.clearInterval(id);
-  }, [storyCount]);
+  const { activeIndex, setIndex, swipeHandlers } = useCarousel({ count: storyCount });
 
   return (
     <section className="scroll-mt-[calc(var(--header-height)+1rem)]" id="stories">
@@ -53,7 +37,10 @@ export default function UserStories({ dict }: UserStoriesProps) {
           </div>
 
           {/* Carousel ≤710px */}
-          <div className="hidden mx-auto w-[min(100%,21.875rem)] overflow-hidden max-[711px]:mt-10 max-[711px]:block">
+          <div
+            className="hidden mx-auto w-[min(100%,21.875rem)] overflow-hidden select-none max-[711px]:mt-10 max-[711px]:block"
+            {...swipeHandlers}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={dict.stories[activeIndex].title}
@@ -78,16 +65,17 @@ export default function UserStories({ dict }: UserStoriesProps) {
                   key={index}
                   type="button"
                   aria-label={`Show story ${index + 1}`}
-                  onClick={() => scrollToIndex(index)}
+                  onClick={() => setIndex(index)}
                   className="relative block h-2 overflow-hidden rounded-full bg-white/50"
                   style={{ width: isActive ? 20 : 8, opacity: isActive ? 1 : 0.5 }}
                 >
                   {isActive ? (
                     <motion.span
-                      animate={{ scaleX: [0, 1] }}
+                      key={activeIndex}
+                      animate={{ scaleX: 1 }}
                       className="absolute inset-0 rounded-[inherit] bg-white origin-left"
                       initial={{ scaleX: 0 }}
-                      transition={{ duration: 3.2, ease: "linear" }}
+                      transition={{ duration: 3.6, ease: "linear" }}
                     />
                   ) : null}
                 </button>

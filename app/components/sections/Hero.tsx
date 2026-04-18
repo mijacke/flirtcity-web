@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-import GradientText from "../ui/GradientText";
+import BlurImage from "../ui/BlurImage";
 import StoreButton from "../ui/StoreButton";
+import HeroCopy from "./HeroCopy";
 
 import type { Dictionary } from "@/app/locales/getDictionary";
 
@@ -108,7 +109,7 @@ function PhotoAsset({
     <div
       className={`absolute z-0 overflow-hidden pointer-events-none after:content-[''] after:absolute after:inset-0 after:z-1 after:bg-[center/cover_no-repeat_url('/images/design/hero/photo-effect.png')] after:opacity-40 after:pointer-events-none ${className}`}
     >
-      <Image
+      <BlurImage
         alt={alt}
         className="object-cover"
         fill
@@ -191,19 +192,13 @@ export default function Hero({ dict }: HeroProps) {
           </div>
 
           {/* Copy block */}
-          <div className="absolute left-[12.5%] top-[29.9074%] z-2 grid w-[29.4792%] gap-[min(1.5rem,1.25vw)]">
-            <div className="grid gap-[min(0.625rem,0.52vw)]">
-              <h1 className="m-0 w-full text-[clamp(34px,3.2292vw,62px)] font-medium leading-[1.15] tracking-[-0.01em]">
-                {dict.heading}
-              </h1>
-              <p className="m-0 text-[clamp(22px,1.875vw,36px)] font-semibold leading-[1.22] tracking-[-0.005em]">
-                <GradientText>{dict.subheading}</GradientText>
-              </p>
-            </div>
-
-            <p className="m-0 w-full text-[clamp(12px,0.8854vw,17px)] leading-[1.4] tracking-[-0.01em] text-white/92">
-              {dict.description}
-            </p>
+          <div className="absolute left-[12.5%] top-[29.9074%] z-2 w-[29.4792%]">
+            <HeroCopy
+              description={dict.description}
+              heading={dict.heading}
+              subheading={dict.subheading}
+              variant="desktop"
+            />
           </div>
 
           {/* Phone visual — back sized so visible phone matches front (front image has rotation alpha) */}
@@ -298,17 +293,12 @@ export default function Hero({ dict }: HeroProps) {
           </div>
 
           <div className="relative section-frame grid gap-[clamp(2.5rem,5vw,4.5rem)] justify-items-center text-center">
-            <div className="grid gap-4 w-full max-w-[44rem]">
-              <h1 className="m-0 text-[clamp(2rem,5.2vw,3.75rem)] font-medium leading-[1.15] tracking-[-0.01em]">
-                {dict.heading}
-              </h1>
-              <p className="m-0 text-[clamp(1.5rem,3.4vw,2.25rem)] font-semibold leading-[1.2] tracking-[-0.005em]">
-                <GradientText>{dict.subheading}</GradientText>
-              </p>
-              <p className="m-0 mx-auto max-w-[40rem] text-[clamp(0.95rem,1.8vw,1.125rem)] leading-[1.5] text-white/85">
-                {dict.description}
-              </p>
-            </div>
+            <HeroCopy
+              description={dict.description}
+              heading={dict.heading}
+              subheading={dict.subheading}
+              variant="mobile"
+            />
 
             {/* Two overlapped phones — back sized so visible phone matches front */}
             <div className="relative mx-auto w-[min(100%,22rem)] aspect-[359/620]">

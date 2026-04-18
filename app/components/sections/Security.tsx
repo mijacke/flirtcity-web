@@ -44,7 +44,9 @@ export default function Security({ dict }: SecurityProps) {
                       alt=""
                       aria-hidden="true"
                       className="shrink-0 w-6 h-6"
+                      decoding="async"
                       height={24}
+                      loading="lazy"
                       src={securityIcons[index]}
                       width={24}
                     />
@@ -65,7 +67,8 @@ export default function Security({ dict }: SecurityProps) {
                   aria-hidden="true"
                   className="top-[9.79%] left-[24.73%] w-[67.46%] h-auto rounded-[clamp(1.5rem,3.7vw,3.125rem)] z-0"
                   height={422}
-                  fetchPriority="high"
+                  loading="lazy"
+                  decoding="async"
                   src="/images/design/security/background-card.svg"
                   width={570}
                 />
@@ -74,7 +77,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[14.55%] left-[7.44%] w-[55.59%] h-auto rotate-[11.6206deg] origin-center opacity-92 blur-[0.2px] z-1"
+                  decoding="async"
                   height={491}
+                  loading="lazy"
                   src="/images/design/security/logo_symbol-flirtcity.svg"
                   width={559}
                 />
@@ -83,8 +88,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[1.82%] left-[4.5%] w-[30.66%] h-auto z-2"
+                  decoding="async"
                   height={531}
-                  fetchPriority="high"
+                  loading="lazy"
                   src="/images/design/security/iPhone-security.svg"
                   width={259}
                 />
@@ -93,7 +99,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[30.69%] left-[27.98%] w-[27.81%] h-auto rounded-[clamp(0.75rem,1.95vw,1.6444rem)] z-3"
+                  decoding="async"
                   height={202}
+                  loading="lazy"
                   src="/images/design/security/sheet-profile-verified.svg"
                   width={235}
                 />
@@ -102,7 +110,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[76.26%] left-[50.66%] w-[25.42%] h-auto z-3"
+                  decoding="async"
                   height={38}
+                  loading="lazy"
                   src="/images/design/security/message.svg"
                   width={216}
                 />
@@ -111,7 +121,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[62.88%] left-[84.25%] w-[13.46%] h-auto rounded-[clamp(0.5rem,0.88vw,0.75rem)] z-3"
+                  decoding="async"
                   height={160}
+                  loading="lazy"
                   src="/images/design/security/match-item.svg"
                   width={114}
                 />
@@ -120,7 +132,9 @@ export default function Security({ dict }: SecurityProps) {
                   alt=""
                   aria-hidden="true"
                   className="top-[5.08%] left-[75.5%] w-[5.68%] h-auto z-3"
+                  decoding="async"
                   height={48}
+                  loading="lazy"
                   src="/images/design/security/heart-top-right.svg"
                   width={48}
                 />
