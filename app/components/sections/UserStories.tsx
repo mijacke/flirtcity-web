@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
 import SectionHeading from "../ui/SectionHeading";
@@ -23,54 +23,18 @@ type UserStoriesProps = {
 export default function UserStories({ dict }: UserStoriesProps) {
   const storyCount = dict.stories.length;
   const [activeIndex, setActiveIndex] = useState(0);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const userInteracted = useRef(false);
-  const isSyncing = useRef(false);
 
   const scrollToIndex = useCallback((index: number) => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    isSyncing.current = true;
-    scroller.scrollTo({ left: scroller.clientWidth * index, behavior: "smooth" });
     setActiveIndex(index);
-    window.setTimeout(() => {
-      isSyncing.current = false;
-    }, 500);
   }, []);
 
-  const handleScroll = useCallback(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller || isSyncing.current) return;
-    userInteracted.current = true;
-    const width = scroller.clientWidth;
-    if (width === 0) return;
-    const next = Math.round(scroller.scrollLeft / width);
-    setActiveIndex((prev) => (prev === next ? prev : next));
-  }, []);
-
-  useEffect(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    scroller.addEventListener("scroll", handleScroll, { passive: true });
-    return () => scroller.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  /* Auto-advance — pauses after user interacts */
   useEffect(() => {
     const id = window.setInterval(() => {
-      if (userInteracted.current) return;
-      setActiveIndex((current) => {
-        const next = (current + 1) % storyCount;
-        const scroller = scrollerRef.current;
-        if (scroller && window.matchMedia("(max-width: 720px)").matches) {
-          isSyncing.current = true;
-          scroller.scrollTo({ left: scroller.clientWidth * next, behavior: "smooth" });
-          window.setTimeout(() => {
-            isSyncing.current = false;
-          }, 500);
-        }
-        return next;
-      });
+      // Pause while the mobile menu (or any other dialog) is open — the slide
+      // animation otherwise repaints behind the non-modal dialog and briefly
+      // bleeds horizontally, causing a visible flicker.
+      if (document.querySelector("dialog[open]")) return;
+      setActiveIndex((current) => (current + 1) % storyCount);
     }, 3600);
     return () => window.clearInterval(id);
   }, [storyCount]);
@@ -78,33 +42,34 @@ export default function UserStories({ dict }: UserStoriesProps) {
   return (
     <section className="scroll-mt-[calc(var(--header-height)+1rem)]" id="stories">
       <div className="section-shell section-stack">
-        <div className="section-frame grid gap-[clamp(2.5rem,4vw,5rem)]">
+        <div className="section-frame grid gap-[clamp(2.5rem,4vw,5rem)] max-[711px]:block">
           <SectionHeading title={dict.sectionTitle} />
 
-          {/* Grid ≥720px (4-col desktop, 2-col tablet) */}
-          <div className="grid grid-cols-4 gap-[1.875rem] max-[1100px]:grid-cols-2 max-[720px]:hidden">
+          {/* Grid ≥711px (4-col desktop, 2-col tablet) */}
+          <div className="grid grid-cols-4 gap-[1.875rem] max-[1025px]:mx-auto max-[1025px]:w-full max-[1025px]:max-w-[46rem] max-[1025px]:grid-cols-2 max-[711px]:hidden">
             {dict.stories.map((story, index) => (
               <StoryCard key={story.title} story={story} index={index} label={dict.starRatingLabel} />
             ))}
           </div>
 
-          {/* Carousel <720px */}
-          <div className="hidden max-[720px]:block">
-            <div
-              ref={scrollerRef}
-              className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-[var(--section-padding-inline)] px-[var(--section-padding-inline)] pb-4"
-            >
-              {dict.stories.map((story, index) => (
-                <div key={story.title} className="snap-center shrink-0 w-full">
-                  <StoryCard story={story} index={index} label={dict.starRatingLabel} />
-                </div>
-              ))}
-            </div>
+          {/* Carousel ≤710px */}
+          <div className="hidden mx-auto w-[min(100%,21.875rem)] overflow-hidden max-[711px]:mt-10 max-[711px]:block">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={dict.stories[activeIndex].title}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.32, ease: "easeOut" }}
+              >
+                <StoryCard story={dict.stories[activeIndex]} index={activeIndex} label={dict.starRatingLabel} />
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Pager dots — show for all stories */}
+          {/* Pager dots — carousel only */}
           <div
-            className="flex justify-center items-center gap-[0.6875rem] mx-auto p-[0.9375rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] w-fit"
+            className="hidden justify-center items-center gap-[0.6875rem] mx-auto p-[0.9375rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] w-fit max-[711px]:mt-4 max-[711px]:flex"
           >
             {Array.from({ length: storyCount }).map((_, index) => {
               const isActive = index === activeIndex;
@@ -119,9 +84,9 @@ export default function UserStories({ dict }: UserStoriesProps) {
                 >
                   {isActive ? (
                     <motion.span
-                      animate={{ scaleX: [0.38, 1] }}
+                      animate={{ scaleX: [0, 1] }}
                       className="absolute inset-0 rounded-[inherit] bg-white origin-left"
-                      initial={{ scaleX: 0.38 }}
+                      initial={{ scaleX: 0 }}
                       transition={{ duration: 3.2, ease: "linear" }}
                     />
                   ) : null}
@@ -146,7 +111,7 @@ function StoryCard({
 }) {
   return (
     <motion.article
-      className="grid content-start gap-5 min-h-[22.8125rem] p-[2.5rem_1.875rem] rounded-[1.25rem] border border-[var(--surface-panel-border-soft)] bg-[var(--surface-panel-bg)] max-[1100px]:min-h-[20rem] max-[1100px]:p-[2rem_1.5rem]"
+      className="grid content-start gap-5 min-h-[22.8125rem] p-[2.5rem_1.875rem] rounded-[1.25rem] border border-[var(--surface-panel-border-soft)] bg-[var(--surface-panel-bg)] max-[1025px]:min-h-[20rem] max-[1025px]:p-[2rem_1.5rem] max-[711px]:aspect-square max-[711px]:min-h-0 max-[711px]:gap-4 max-[711px]:p-[1.75rem_1.5rem]"
       initial={{ opacity: 0, y: 32 }}
       transition={{ delay: index * 0.08, duration: 0.55 }}
       viewport={{ once: true }}
@@ -179,7 +144,7 @@ function StoryCard({
       <h3 className="pearl-text m-0 w-full text-[1.375rem] font-semibold leading-[1.181818] tracking-[-0.11px] text-center">
         {story.title}
       </h3>
-      <p className="m-0 w-full text-white/50 opacity-50 text-center text-[1.125rem] font-normal tracking-[-0.5px] leading-[1.333333] max-[720px]:text-base">
+      <p className="m-0 w-full text-white/50 opacity-50 text-center text-[1.125rem] font-normal tracking-[-0.5px] leading-[1.333333] max-[711px]:text-base">
         {story.quote}
       </p>
     </motion.article>

@@ -132,7 +132,7 @@ export default function Hero({ dict }: HeroProps) {
       id="about"
     >
       {/* ── Desktop absolute layout (≥1100px) ── */}
-      <div className="relative min-h-[min(1080px,56.25vw)] overflow-x-clip max-[1100px]:hidden">
+      <div className="relative min-h-[min(1080px,56.25vw)] pb-[clamp(7rem,12.5vw,14.75rem)] overflow-x-clip max-[1100px]:hidden">
         <div className="relative w-[min(1920px,100vw)] aspect-[1920/1080] mx-auto">
           {/* Decorative collage */}
           <PhotoAsset

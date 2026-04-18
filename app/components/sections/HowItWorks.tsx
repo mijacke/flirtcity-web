@@ -1,3 +1,9 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
+
 import FadeIn from "../animations/FadeIn";
 import SectionHeading from "../ui/SectionHeading";
 
@@ -17,10 +23,27 @@ type HowItWorksProps = {
 };
 
 export default function HowItWorks({ dict }: HowItWorksProps) {
+  const stepCount = dict.steps.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToIndex = useCallback((index: number) => {
+    setActiveIndex(index);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      // Pause while the mobile menu (or any other dialog) is open — slide
+      // animations otherwise repaint behind the non-modal dialog.
+      if (document.querySelector("dialog[open]")) return;
+      setActiveIndex((current) => (current + 1) % stepCount);
+    }, 3600);
+    return () => window.clearInterval(id);
+  }, [stepCount]);
+
   return (
     <section className="scroll-mt-[calc(var(--header-height)+1rem)]" id="how-it-works">
-      <div className="section-shell section-stack relative">
-        <div className="section-frame grid gap-[clamp(2.5rem,4vw,5rem)]">
+      <div className="section-shell section-stack relative max-[720px]:py-[clamp(2rem,7svh,3.25rem)]">
+        <div className="section-frame grid gap-[clamp(2.5rem,4vw,5rem)] max-[720px]:gap-6">
           <SectionHeading title={dict.sectionTitle} />
 
           <svg
@@ -48,11 +71,53 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
             </defs>
           </svg>
 
-          {/* Responsive grid: 4 cols ≥1100, 2 cols 720–1100, 1 col <720 */}
-          <div className="grid grid-cols-4 gap-[clamp(1.25rem,2.6vw,3.125rem)] max-[1100px]:grid-cols-2 max-[720px]:grid-cols-1 max-[720px]:gap-6 max-[720px]:max-w-[22rem] max-[720px]:mx-auto">
+          {/* Grid ≥720px: 4 cols desktop, 2 cols tablet */}
+          <div className="grid grid-cols-4 gap-[1.875rem] max-[1025px]:mx-auto max-[1025px]:w-full max-[1025px]:max-w-[46rem] max-[1025px]:grid-cols-2 max-[720px]:hidden">
             {dict.steps.map((step, index) => (
               <StepCard key={step.number} step={step} index={index} />
             ))}
+          </div>
+
+          {/* Carousel <720px */}
+          <div className="hidden max-[720px]:mx-auto max-[720px]:block max-[720px]:w-full max-[720px]:max-w-[28rem]">
+            <div className="overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={dict.steps[activeIndex].number}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.32, ease: "easeOut" }}
+              >
+                <StepCard step={dict.steps[activeIndex]} index={activeIndex} />
+              </motion.div>
+            </AnimatePresence>
+            </div>
+
+            <div className="flex justify-center items-center gap-[0.6875rem] mx-auto mt-4 p-[0.9375rem] rounded-[1.25rem] bg-[var(--surface-panel-bg)] w-fit">
+              {Array.from({ length: stepCount }).map((_, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    aria-label={`Show step ${index + 1}`}
+                    onClick={() => scrollToIndex(index)}
+                    className="relative block h-2 overflow-hidden rounded-full bg-white/50"
+                    style={{ width: isActive ? 20 : 8, opacity: isActive ? 1 : 0.5 }}
+                  >
+                    {isActive ? (
+                      <motion.span
+                        animate={{ scaleX: [0, 1] }}
+                        className="absolute inset-0 rounded-[inherit] bg-white origin-left"
+                        initial={{ scaleX: 0 }}
+                        transition={{ duration: 3.2, ease: "linear" }}
+                      />
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -74,26 +139,23 @@ function StepCard({
   return (
     <FadeIn
       as="article"
-      className="relative grid items-start gap-5 group"
+      className="relative grid items-start gap-3 group max-[720px]:gap-2"
       delay={index * 0.08}
     >
-      <div
-        className="relative min-h-[21.875rem] rounded-t-[3.75rem]"
-        data-tone={asset.tone}
-      >
+      <div className="relative mx-auto w-[min(100%,21.875em)] aspect-[323/350]" data-tone={asset.tone}>
         <img
           alt={step.title}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 block w-[min(100%,20.1875rem)] h-auto drop-shadow-[0_18px_34px_rgba(0,0,0,0.36)] transition-transform duration-[420ms] ease-out group-hover:scale-[1.015]"
+          className="absolute inset-0 block w-full h-full drop-shadow-[0_18px_34px_rgba(0,0,0,0.36)] transition-transform duration-[420ms] ease-out group-hover:scale-[1.015]"
           height={350}
           src={asset.image}
           width={323}
         />
       </div>
 
-      <div className="relative w-full">
+      <div className="relative mx-auto w-[min(100%,21.875em)] min-h-[7em]">
         <svg
           aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-[min(60%,13.4375rem)] h-auto z-0 overflow-visible pointer-events-none select-none"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-[min(60%,13.4375em)] h-auto z-0 overflow-visible pointer-events-none select-none"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 215 158"
         >
@@ -109,7 +171,7 @@ function StepCard({
           </text>
         </svg>
 
-        <h3 className="relative z-1 m-0 w-full grid grid-cols-[auto_minmax(0,1fr)] items-start gap-2 text-[1.375rem] font-semibold leading-[1.181818] tracking-[-0.11px] text-left">
+        <h3 className="relative z-1 m-0 w-full grid grid-cols-[auto_minmax(0,1fr)] items-start gap-[0.5em] text-[1.375em] font-semibold leading-[1.181818] tracking-[-0.11px] text-left">
           <span className="text-[var(--color-text-primary)] whitespace-nowrap">{step.number}</span>
           <span className="min-w-0">{step.title}</span>
         </h3>
