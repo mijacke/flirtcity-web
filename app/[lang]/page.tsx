@@ -26,7 +26,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <>
-      <Header dict={dict.header} />
+      <Header dict={dict.header} socials={dict.footer.socials} />
       <main>
         <Hero dict={dict.hero} />
         <HowItWorks dict={dict.howItWorks} />

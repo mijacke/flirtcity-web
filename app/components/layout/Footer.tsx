@@ -12,12 +12,12 @@ export default function Footer({ dict }: FooterProps) {
       <div className="section-shell grid gap-[2.1875rem] pb-[2.8125rem]">
         <div className="section-frame grid justify-items-center gap-[2.1875rem]">
           {/* Top Row */}
-          <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center gap-2.5 max-md:grid-cols-1 max-md:justify-items-center max-md:text-center">
-            <p className="m-0 text-sm leading-[1.428571] tracking-[-0.5px] text-white/72">
+          <div className="w-full grid grid-cols-[1fr_auto_1fr] items-center gap-2.5 max-md:contents">
+            <p className="m-0 text-sm leading-[1.5] tracking-[-0.5px] text-white/72 max-md:order-4 max-md:text-center">
               {dict.copyright}
             </p>
 
-            <div className="w-[clamp(7rem,11vw,8.5rem)] justify-self-center">
+            <div className="w-[clamp(7rem,11vw,8.5rem)] justify-self-center max-md:order-2">
               <img
                 alt={dict.logoAlt}
                 className="w-full h-auto"
@@ -28,7 +28,7 @@ export default function Footer({ dict }: FooterProps) {
               />
             </div>
 
-            <div className="flex justify-end items-center gap-3.5 max-md:justify-center">
+            <div className="flex justify-end items-center gap-3.5 max-md:order-3 max-md:justify-center">
               {dict.socials.map((item) => (
                 <a
                   key={item.label}
@@ -45,11 +45,11 @@ export default function Footer({ dict }: FooterProps) {
           </div>
 
           {/* Bottom Row */}
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap justify-center gap-5 max-md:order-1 max-md:flex-col max-md:items-center">
             {dict.links.map((link) => (
               <a
                 key={link.label}
-                className="text-sm leading-[1.428571] tracking-[-0.5px] text-white/62 transition-colors duration-[180ms] ease-out hover:text-[var(--color-text-primary)]"
+                className="text-sm leading-[1] tracking-[-0.5px] text-white/62 transition-colors duration-[180ms] ease-out hover:text-[var(--color-text-primary)]"
                 href={link.href}
               >
                 {link.label}
