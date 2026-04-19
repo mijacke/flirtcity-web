@@ -39,7 +39,7 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
                 loading="lazy"
                 sizes="1700px"
                 src="/images/design/download-cta/logo-flirtcity-left.png"
-                style={{ left: -500, top: -700 }}
+                style={{ left: -500, top: -550 }}
                 width={1700}
               />
               <BlurImage
