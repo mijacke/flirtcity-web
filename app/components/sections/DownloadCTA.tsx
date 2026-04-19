@@ -34,23 +34,23 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
               <BlurImage
                 alt=""
                 aria-hidden="true"
-                className="absolute max-w-none select-none pointer-events-none w-auto h-auto"
-                height={1500}
+                className="absolute max-w-none select-none pointer-events-none"
+                height={1547}
                 loading="lazy"
                 sizes="1700px"
                 src="/images/design/download-cta/logo-flirtcity-left.png"
-                style={{ left: -500, top: -700, minWidth: 1700, minHeight: 1500 }}
+                style={{ left: -500, top: -700 }}
                 width={1700}
               />
               <BlurImage
                 alt=""
                 aria-hidden="true"
-                className="absolute max-w-none select-none pointer-events-none w-auto h-auto"
-                height={1550}
+                className="absolute max-w-none select-none pointer-events-none"
+                height={1536}
                 loading="lazy"
                 sizes="1600px"
                 src="/images/design/download-cta/logo-flirtcity-right.png"
-                style={{ left: 700, top: -100, minWidth: 1600, minHeight: 1550 }}
+                style={{ left: 700, top: -100 }}
                 width={1600}
               />
             </div>
@@ -79,7 +79,6 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
                   alt={dict.appStoreAlt}
                   className="block w-full h-full object-contain"
                   decoding="async"
-                  fetchPriority="high"
                   loading="lazy"
                   src="/images/design/download-cta/app-store.svg"
                 />
@@ -95,7 +94,6 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
                   alt={dict.googlePlayAlt}
                   className="block w-full h-full object-contain"
                   decoding="async"
-                  fetchPriority="high"
                   loading="lazy"
                   src="/images/design/download-cta/google-play.svg"
                 />

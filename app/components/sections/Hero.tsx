@@ -306,7 +306,6 @@ export default function Hero({ dict }: HeroProps) {
                 alt="Secondary Flirtcity phone screen"
                 className="absolute left-[43%] top-[15%] w-[60%] h-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] z-1"
                 height={618}
-                priority
                 src="/images/design/hero/hero-phone-back.png"
                 width={302}
               />
@@ -314,7 +313,6 @@ export default function Hero({ dict }: HeroProps) {
                 alt="Primary Flirtcity phone screen"
                 className="absolute right-[20%] bottom-15 w-full h-auto drop-shadow-[0_24px_40px_rgba(0,0,0,0.32)] z-2"
                 height={787}
-                priority
                 src="/images/design/hero/hero-phone-front-cropped.png"
                 width={471}
               />
