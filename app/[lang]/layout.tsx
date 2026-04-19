@@ -87,7 +87,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
 
   return (
     <html lang={lang} className={`${outfit.variable} ${montserrat.variable}`}>
-      <body>
+      <body suppressHydrationWarning>
         {children}
       </body>
     </html>

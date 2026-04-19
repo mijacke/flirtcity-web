@@ -34,23 +34,23 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
               <BlurImage
                 alt=""
                 aria-hidden="true"
-                className="absolute max-w-none select-none pointer-events-none"
+                className="absolute max-w-none select-none pointer-events-none w-auto h-auto"
                 height={1500}
                 loading="lazy"
                 sizes="1700px"
                 src="/images/design/download-cta/logo-flirtcity-left.png"
-                style={{ left: -500, top: -700, width: 1700, height: 1500 }}
+                style={{ left: -500, top: -700, minWidth: 1700, minHeight: 1500 }}
                 width={1700}
               />
               <BlurImage
                 alt=""
                 aria-hidden="true"
-                className="absolute max-w-none select-none pointer-events-none"
+                className="absolute max-w-none select-none pointer-events-none w-auto h-auto"
                 height={1550}
                 loading="lazy"
                 sizes="1600px"
                 src="/images/design/download-cta/logo-flirtcity-right.png"
-                style={{ left: 700, top: -100, width: 1600, height: 1550 }}
+                style={{ left: 700, top: -100, minWidth: 1600, minHeight: 1550 }}
                 width={1600}
               />
             </div>
@@ -70,7 +70,8 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
             <div className="flex flex-nowrap justify-center items-center gap-3 w-full max-w-[441px]">
               <motion.a
                 className="relative inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 aspect-[3.05/1]"
-                href="#"
+                href="https://apps.apple.com/app/id=com.jarwizz.flirtcity"
+                target="_blank"
                 rel="noopener noreferrer"
                 {...storeButtonHover}
               >
@@ -85,7 +86,8 @@ export default function DownloadCTA({ dict }: DownloadCTAProps) {
               </motion.a>
               <motion.a
                 className="relative inline-flex items-center justify-center origin-center flex-1 basis-0 min-w-0 aspect-[3.05/1]"
-                href="#"
+                href="https://play.google.com/store/apps/details?id=com.jarwizz.flirtcity"
+                target="_blank"
                 rel="noopener noreferrer"
                 {...storeButtonHover}
               >

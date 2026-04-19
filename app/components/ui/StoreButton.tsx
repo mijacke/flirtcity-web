@@ -6,10 +6,12 @@ const STORE_BUTTONS = {
   appStore: {
     alt: "Download on the App Store",
     src: "/images/design/hero/app-store.svg",
+    href: "https://apps.apple.com/app/id=com.jarwizz.flirtcity", // TODO: Update with actual App Store URL
   },
   googlePlay: {
     alt: "Get it on Google Play",
     src: "/images/design/hero/google-play.svg",
+    href: "https://play.google.com/store/apps/details?id=com.jarwizz.flirtcity", // TODO: Update with actual Play Store URL
   },
 } as const;
 
@@ -34,19 +36,22 @@ const sizeStyles = {
 
 export default function StoreButton({
   className,
-  href = "#",
+  href,
   priority = false,
   size = "default",
   store,
 }: StoreButtonProps) {
   const asset = STORE_BUTTONS[store];
+  const finalHref = href ?? asset.href;
 
   return (
     <motion.a
       data-size={size}
       data-store={store}
       className={`relative inline-flex items-center justify-center origin-center ${sizeStyles[size]} ${className ?? ""}`}
-      href={href}
+      href={finalHref}
+      target="_blank"
+      rel="noopener noreferrer"
       transition={{ stiffness: 380, type: "spring" }}
       whileHover={{ scale: 1.03, y: -2 }}
       whileTap={{ scale: 0.98 }}
