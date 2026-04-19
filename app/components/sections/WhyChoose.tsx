@@ -36,7 +36,7 @@ const cardAssets = {
   safeEnvironment: {
     asset: "/images/design/why-choose-flirtcity/top-2.svg",
     assetClassName:
-      "left-[1em] top-[5.4em] w-[20.75em] max-[1025px]:top-auto max-[1025px]:bottom-0 max-[1025px]:left-1/2 max-[1025px]:w-[88%] max-[1025px]:-translate-x-1/2",
+      "left-[1em] top-[5.4em] w-[20.75em] max-[1025px]:top-auto max-[1025px]:right-0 max-[1025px]:bottom-0 max-[1025px]:left-auto max-[1025px]:w-[88%] max-[1025px]:translate-x-0",
     assetHeight: 290,
     assetWidth: 332,
     cardClassName:
@@ -56,7 +56,7 @@ const cardAssets = {
       "h-[23.8125em] p-[2.5em_3.75em]",
     mobileAsset: "/images/design/why-choose-flirtcity/smart-matches-mobile.svg",
     mobileAssetClassName:
-      "!hidden max-[1025px]:!block max-[1025px]:left-1/2 max-[1025px]:top-[8%] max-[1025px]:w-[94%] max-[1025px]:-translate-x-1/2",
+       "!hidden max-[1025px]:!block max-[1025px]:top-0 max-[1025px]:right-0 max-[1025px]:left-auto max-[1025px]:w-[94%] max-[1025px]:translate-x-0",
     mobileAssetHeight: 292,
     mobileAssetWidth: 361,
     mobileTitleClassName:
@@ -74,7 +74,7 @@ const cardAssets = {
       "h-[49.125em] p-[2.5em_1.875em]",
     mobileAsset: "/images/design/why-choose-flirtcity/works-only-mobile.svg",
     mobileAssetClassName:
-      "!hidden max-[1025px]:!block max-[1025px]:left-1/2 max-[1025px]:bottom-0 max-[1025px]:top-auto max-[1025px]:w-[96%] max-[1025px]:-translate-x-1/2",
+      "!hidden max-[1025px]:!block max-[1025px]:left-0 max-[1025px]:right-0 max-[1025px]:bottom-0 max-[1025px]:top-auto max-[1025px]:w-full max-[1025px]:translate-x-0",
     mobileAssetHeight: 283,
     mobileAssetWidth: 361,
     mobileTitleClassName:
